@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="manifest" href="../manifest.json" />
+  <link rel="stylesheet" href="css/style.css" />
+  <title>Mein Super-Start</title>
+</head>
+<body>
+  <header class="app-header">
+    <div class="brand">
+      <img src="../icons/unicorn-maskottchen.svg" alt="Einhorn" class="brand__avatar" />
+      <div>
+        <h1>Mein Super-Start</h1>
+        <p class="tagline">Glitzernder Start in den Tag!</p>
+      </div>
+    </div>
+    <div class="mode-toggle" aria-live="polite">
+      <button id="childModeBtn" class="mode-toggle__btn mode-toggle__btn--active">Kinder Modus</button>
+      <button id="parentModeBtn" class="mode-toggle__btn">Eltern Modus</button>
+    </div>
+  </header>
+
+  <main id="childMode" class="mode mode--active" aria-label="Kinderbereich">
+    <section class="avatar-card" aria-live="polite">
+      <h2>Dein Einhorn</h2>
+      <div class="avatar-card__visual">
+        <div id="avatarCanvas" class="avatar-card__canvas" role="img" aria-label="Einhorn Avatar"></div>
+        <div class="avatar-card__points">
+          <span id="pointTotal">0</span>
+          <span>Punkte</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="tasks" aria-labelledby="tasksTitle">
+      <div class="tasks__header">
+        <h2 id="tasksTitle">Meine Morgenaufgaben</h2>
+        <button id="shuffleTasksBtn" class="ghost">Mischen</button>
+      </div>
+      <ul id="taskList" class="tasks__list" role="list"></ul>
+    </section>
+
+    <section class="timer" aria-live="polite">
+      <h2>Glitzer-Stoppuhr</h2>
+      <div class="timer__display" id="timerDisplay">00:00</div>
+      <div class="timer__controls">
+        <button id="startTimerBtn" class="primary">Start</button>
+        <button id="pauseTimerBtn" class="secondary">Pause</button>
+        <button id="resetTimerBtn" class="ghost">Neu</button>
+      </div>
+      <p id="motivationMessage" class="timer__motivation">Lass uns losglitzern!</p>
+    </section>
+
+    <section class="rewards" aria-labelledby="rewardTitle">
+      <h2 id="rewardTitle">Belohnungspfad</h2>
+      <div id="rewardTrack" class="rewards__track"></div>
+      <button id="openShopBtn" class="secondary">Avatar-Shop öffnen</button>
+    </section>
+
+    <dialog id="shopDialog" class="shop" aria-label="Avatar Shop">
+      <form method="dialog">
+        <header class="shop__header">
+          <h2>Avatar-Shop</h2>
+          <p><strong>Punkte:</strong> <span id="shopPoints">0</span></p>
+        </header>
+        <ul id="shopItems" class="shop__items"></ul>
+        <menu class="shop__actions">
+          <button value="cancel" class="ghost">Schließen</button>
+        </menu>
+      </form>
+    </dialog>
+  </main>
+
+  <main id="parentMode" class="mode" aria-label="Elternbereich">
+    <section class="parent-card">
+      <h2>Eltern-Einstellungen</h2>
+      <p class="hint">Geschützt mit PIN <span class="pill">1234</span></p>
+
+      <div class="tabs" role="tablist">
+        <button class="tabs__tab tabs__tab--active" data-tab="tasks" role="tab" aria-selected="true">Aufgaben</button>
+        <button class="tabs__tab" data-tab="timer" role="tab">Timer</button>
+        <button class="tabs__tab" data-tab="shop" role="tab">Shop</button>
+        <button class="tabs__tab" data-tab="data" role="tab">Daten</button>
+      </div>
+
+      <div id="tabContent" class="tab-content">
+        <section data-panel="tasks" class="tab-panel tab-panel--active">
+          <h3>Aufgabenliste</h3>
+          <form id="taskForm" class="stack">
+            <label>
+              Aufgabe
+              <input type="text" id="taskName" required />
+            </label>
+            <label>
+              Dauer (Minuten)
+              <input type="number" id="taskDuration" min="1" max="20" value="5" />
+            </label>
+            <button type="submit" class="primary">Aufgabe hinzufügen</button>
+          </form>
+          <ul id="parentTaskList" class="tasks__list tasks__list--parent"></ul>
+        </section>
+
+        <section data-panel="timer" class="tab-panel">
+          <h3>Timer Optionen</h3>
+          <label class="inline">
+            <input type="checkbox" id="autoAdvanceToggle" />
+            Nächste Aufgabe automatisch starten
+          </label>
+          <label class="inline">
+            <input type="checkbox" id="voiceToggle" />
+            Sprachhinweise für Kinder aktivieren
+          </label>
+          <label>
+            Motivationssätze (kommagetrennt)
+            <textarea id="motivationInput" rows="3"></textarea>
+          </label>
+        </section>
+
+        <section data-panel="shop" class="tab-panel">
+          <h3>Shop Verwaltung</h3>
+          <p>Kaufe Items mit Punkten. Preise können überschrieben werden.</p>
+          <ul id="parentShopList" class="shop__items shop__items--parent"></ul>
+        </section>
+
+        <section data-panel="data" class="tab-panel">
+          <h3>Export & Import</h3>
+          <div class="stack">
+            <button id="exportBtn" class="secondary">Daten exportieren</button>
+            <label class="upload">
+              <span>Datei importieren</span>
+              <input type="file" id="importInput" accept="application/json" />
+            </label>
+          </div>
+          <pre id="exportPreview" class="export-preview" aria-live="polite"></pre>
+        </section>
+      </div>
+    </section>
+  </main>
+
+  <template id="taskTemplate">
+    <li class="task">
+      <button class="task__button">
+        <span class="task__name"></span>
+        <span class="task__duration"></span>
+      </button>
+      <button class="task__delete" aria-label="Aufgabe löschen">×</button>
+    </li>
+  </template>
+
+  <template id="rewardTemplate">
+    <div class="reward">
+      <span class="reward__icon">⭐️</span>
+      <div class="reward__details">
+        <p class="reward__name"></p>
+        <p class="reward__message"></p>
+      </div>
+    </div>
+  </template>
+
+  <script type="module" src="js/main.js"></script>
+</body>
+</html>
