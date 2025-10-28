@@ -1,0 +1,30 @@
+{
+  "screens": [
+    {
+      "id": "child-dashboard",
+      "title": "Kinder Routine Übersicht",
+      "layout": {
+        "header": "Einhorn Avatar & Punkte",
+        "main": ["Aufgabenliste", "Timer Panel"],
+        "footer": "Belohnungsfortschritt"
+      },
+      "interactions": [
+        "Tippen auf Aufgabe startet Timer",
+        "Timer Ende triggert Konfetti",
+        "Belohnungsbutton öffnet Avatar-Shop"
+      ]
+    },
+    {
+      "id": "parent-settings",
+      "title": "Eltern Einstellungen",
+      "layout": {
+        "tabs": ["Aufgaben", "Timer", "Shop", "Daten"]
+      },
+      "interactions": [
+        "Drag & Drop für Reihenfolge",
+        "Export-Button speichert JSON",
+        "Import-Button lädt JSON"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,33 @@
+{
+  "colors": {
+    "primary": "#ff6bd6",
+    "secondary": "#6bc9ff",
+    "accent": "#ffe066",
+    "background": "#fdf6ff",
+    "text": "#2f1b3a"
+  },
+  "typography": {
+    "display": {
+      "font": "'Baloo 2', cursive",
+      "size": "2.4rem"
+    },
+    "body": {
+      "font": "'Nunito', sans-serif",
+      "size": "1rem"
+    }
+  },
+  "elevation": {
+    "card": "0 8px 20px rgba(255, 107, 214, 0.25)",
+    "button": "0 4px 12px rgba(107, 201, 255, 0.4)"
+  },
+  "components": {
+    "timerCard": {
+      "radius": "24px",
+      "padding": "1.5rem"
+    },
+    "taskChip": {
+      "radius": "999px",
+      "padding": "0.75rem 1.25rem"
+    }
+  }
+}

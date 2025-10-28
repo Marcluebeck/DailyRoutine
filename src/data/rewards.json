@@ -1,0 +1,14 @@
+[
+  {
+    "id": "morning-star",
+    "name": "Morgenstern",
+    "threshold": 3,
+    "message": "Du funkelt wie der Morgenhimmel!"
+  },
+  {
+    "id": "sunrise-badge",
+    "name": "Sonnenaufgangs-Orden",
+    "threshold": 5,
+    "message": "Wow! Alle Aufgaben erledigt!"
+  }
+]
