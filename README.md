@@ -30,3 +30,11 @@ python3 -m http.server 8080
 ```
 
 Service Worker registriert sich automatisch – Seite nach Änderungen aktualisieren.
+
+## Tests
+Automatisierte Modultests prüfen Spiel- und Speicherlogik sowie Timer-, Export- und Voice-Helfer.
+
+```
+npm install
+npm test
+```
