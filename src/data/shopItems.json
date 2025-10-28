@@ -1,0 +1,20 @@
+[
+  {
+    "id": "sparkle-wings",
+    "name": "Glitzerflügel",
+    "cost": 30,
+    "description": "Lässt das Einhorn sanft schweben"
+  },
+  {
+    "id": "rainbow-mane",
+    "name": "Regenbogen-Mähne",
+    "cost": 20,
+    "description": "Extra bunte Strähnen nach jedem Erfolg"
+  },
+  {
+    "id": "star-hooves",
+    "name": "Sternenhufe",
+    "cost": 15,
+    "description": "Leuchten im Dunkeln der Morgenstunden"
+  }
+]
