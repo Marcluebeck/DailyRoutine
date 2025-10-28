@@ -289,6 +289,24 @@ body {
   gap: 0.5rem;
 }
 
+.shop__item.is-owned {
+  border: 2px solid rgba(126, 88, 229, 0.3);
+  box-shadow: inset 0 0 0 1px rgba(126, 88, 229, 0.1);
+  opacity: 0.85;
+}
+
+.shop__item.is-owned .shop__buy {
+  cursor: not-allowed;
+}
+
+.shop__status {
+  display: inline-block;
+  margin-left: 0.5rem;
+  font-size: 0.9rem;
+  color: rgba(47, 27, 58, 0.7);
+  font-weight: 600;
+}
+
 .shop__footer {
   display: flex;
   justify-content: space-between;

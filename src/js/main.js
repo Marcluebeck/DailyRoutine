@@ -285,6 +285,10 @@ function renderTasks(state) {
     const li = clone.querySelector('.task');
     li.dataset.taskId = task.id;
     const button = clone.querySelector('.task__button');
+    const deleteButton = clone.querySelector('.task__delete');
+    if (deleteButton) {
+      deleteButton.remove();
+    }
     const name = clone.querySelector('.task__name');
     const duration = clone.querySelector('.task__duration');
     name.textContent = task.name;
@@ -358,14 +362,27 @@ function renderShop(state) {
         <button class="secondary shop__buy" data-item-id="${item.id}">Kaufen</button>
       </div>
     `;
-    li.querySelector('.shop__buy').disabled = !canPurchase(cost);
+    const buyButton = li.querySelector('.shop__buy');
+    const isOwned = state.inventory.includes(item.id);
+    if (isOwned) {
+      li.classList.add('is-owned');
+      buyButton.textContent = 'Freigeschaltet';
+    }
+    buyButton.disabled = isOwned || !canPurchase(cost);
     refs.shopItems.appendChild(li);
 
     const parentLi = li.cloneNode(true);
-    parentLi.querySelector('.shop__buy').remove();
+    const parentBuyButton = parentLi.querySelector('.shop__buy');
+    parentBuyButton.remove();
     const costElement = parentLi.querySelector('.shop__cost');
     costElement.textContent = '';
     costElement.appendChild(createCostInput(item, cost));
+    if (isOwned) {
+      const status = document.createElement('span');
+      status.className = 'shop__status';
+      status.textContent = 'Bereits gekauft';
+      costElement.appendChild(status);
+    }
     refs.parentShopList.appendChild(parentLi);
   });
 }
