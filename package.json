@@ -1,0 +1,20 @@
+{
+  "name": "dailyroutine",
+  "version": "1.0.0",
+  "description": "Eine PWA, die Kindern hilft, ihre Morgenroutine spielerisch zu meistern. Mit Einhorn-Begleiter, Stoppuhr, Belohnungssystem und Offline-Funktion.",
+  "type": "module",
+  "scripts": {
+    "test": "vitest run"
+  },
+  "keywords": [
+    "pwa",
+    "kinder",
+    "morgenroutine"
+  ],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "jsdom": "^27.0.1",
+    "vitest": "^4.0.4"
+  }
+}
